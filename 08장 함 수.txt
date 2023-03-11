@@ -1,0 +1,250 @@
+//8.1
+#include <stdio.h>
+//void view(void);	//함수 선언 또는 원형
+int main(void)
+{
+	printf("메인 함수 : view호출 전\n");
+	view();		//함수 호출
+	printf("메인 함수 : view호출 후\n");
+	return 0;
+}
+void view(void)		//함수 정의
+{
+	printf("view함수\n");
+}
+//8.2
+#include <stdio.h>
+void fun1(void);  //함수 선언 또는 원형
+void fun2(void);  //함수 선언 또는 원형
+int main(void)
+{
+	printf("메인 함수\n");
+	fun1();  //함수 호출
+	fun2();  //함수 호출
+	return 0;
+}
+void fun1(void)  //함수 정의 
+{
+	printf("fun1\n");
+}
+void fun2(void)  //함수 정의
+{
+	printf("fun2\n");
+}
+//8.3
+#include <stdio.h>
+int add(int x, int y);//함수 선언, int add(int,int); 도 가능
+int main(void)
+{
+	int sum;
+	printf("메인 함수\n");
+	add(5,10);	//함수를 호출하고 반환값을 보관하지 않음, 
+		//15가 반환되었지만 사라짐
+	sum=add(5,10);  //함수 호출 후 반환 값을 sum에 저장
+	printf("sum=%d\n",sum);
+	printf("add(5,10)=%d\n",add(5,10));//함수 호출 후 반환값을 바로 출력
+	return 0;
+}
+int add(int x,int y) //함수 정의
+{       // x에 5, y에 10이 전달됨
+	int z;
+	z=x+y;
+	return(z);        //위 세 줄 대신 return(x+y); 라고만 써도 됨
+}
+//8.4
+#include <stdio.h>
+int sum(int n);   //함수 선언
+int main(void){
+	int in=3,out;	
+	out=sum(in);  //함수 호출
+	printf("\nin=%d,out=%d\n",in,out);
+	return 0;
+}
+int sum(int n)
+{
+	printf("n=%d  ",n);
+	if(n<=1) return(1);
+	else return(n+sum(n-1));
+}
+//8.5
+#include <stdio.h>
+int sum(int n);
+int main(void)
+{
+	int in,out;
+	for(in=1;in<=50000;in++){	
+		out=sum(in);
+		printf("in=%d,out=%d\n",in,out);
+	}
+	return 0;
+}
+int sum(int n)
+{
+	if(n<=1) return(1);
+	else return(n+sum(n-1));
+}
+//8.6
+#include <stdio.h>
+int sum(int a,int b);   //함수 선언
+int main(void)
+{
+	int a=2,b=5,result;
+	double da=2.5, db=5.2;
+
+	result=sum(2,5); 
+	printf("%d\n",result);	
+	result=sum(a,b);        
+	printf("%d\n",result);
+
+	result=sum(2.5,5.2); 
+	printf("%d\n",result);
+	result=sum(da,db); 
+	printf("%d\n",result);
+	return 0;
+}
+int sum(int a,int b)
+{
+	return(a+b);
+}
+//8.7
+#include <stdio.h>
+int sum(int a,int b);   
+int main(void)
+{
+	int a=2,b=5,c=0;
+	printf("sum()호출 전 a=%d b=%d c=%d\n",a,b,c); 
+	c=sum(a,b); 
+	printf("sum()호출 후 a=%d b=%d c=%d\n",a,b,c); //2,5,14
+	return 0;
+}
+int sum(int a,int b)
+{
+	a+=2;   //a=a+2;
+	b+=5;   //b=b+5;
+	printf("sum()함수 내 a=%d b=%d a+b=%d\n",a,b, a+b); 
+	return(a+b);
+}
+//8.8
+#include <stdio.h>
+void add(int x, int y);
+int main(void)
+{
+	int num1=1,num2=2,num3=3; 
+	int num4=4,num5=5,num6=6;
+
+	add(num1,num2);
+	add(num3,num4);
+	add(num5,num6);
+	return 0;
+}
+void add(int x,int y)
+{
+	printf("두 수 %d과 %d를 더한 결과는 %d입니다.\n",x, y, x+y);
+}
+///////////////
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h> 
+#include <limits.h> //INT_MIN, INT_MAX가 정의되어 있음
+int main(void) 
+{ 
+	int i,num,sum=0,total, max=INT_MIN, min=INT_MAX; 
+	// max는 int형으로 표현할 수 있는 가장 작은 값 INT_MIN으로 초기화
+	// min은 int형으로 표현할 수 있는 가장 큰 값 INT_MAX로 초기화
+	printf(" ------------------------------------------------------------\n");
+	printf(" 임의 개수의 수의 합, 평균, 최댓값, 최솟값을 구하는 프로그램 \n");
+	printf(" ------------------------------------------------------------\n");
+	printf("계산하려는 수는 몇 개입니까?=");	
+	scanf("%d",&total); 
+	for(i=1;i<=total;i++){ 
+		printf("%d번째 수를 입력하세요=",i); 
+		scanf("%d",&num); 
+		sum+=num; 
+		max=(num>max)?num:max;
+		min=(num<min)?num:min;
+	} 
+	printf("합:%d 평균:%g 최댓값:%d 최솟값:%d\n",sum,(double)sum/total,max,min); 
+	return 0;
+} 
+/////////////////
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h> 
+#include <limits.h> 
+void start(void);      	//함수 선언
+int max_number(int a,int b); 	//함수 선언
+int min_number(int a,int b); 	//함수 선언
+int main(void) 
+{ 
+	int i,num,sum=0,total, max=INT_MIN, min=INT_MAX;  
+
+	start();    	//함수 호출
+
+	printf("계산하려는 수는 몇 개입니까:");	
+	scanf("%d",&total); 
+	for(i=1;i<=total;i++){ 
+		printf("%d번째 수를 입력하세요=:",i); 
+		scanf("%d",&num); 
+		sum+=num; 
+		max=max_number(num,max);	//함수 호출
+		min=min_number(num,min);	//함수 호출
+	} 
+	printf("합:%d 평균:%g 최댓값:%d 최솟값:%d\n",sum,(double)sum/total,max,min); 
+	return 0;
+} 
+void start(void)	//함수 정의
+{
+	printf(" ------------------------------------------------------------\n");
+	printf(" 임의 개수의 수의 합, 평균, 최댓값, 최솟값을 구하는 프로그램 \n");
+	printf(" ------------------------------------------------------------\n");
+}
+int max_number(int a,int b)	//함수 정의
+{
+	return (a>b)?a:b;
+}
+int min_number(int a,int b)	//함수 정의
+{
+	return (a<b)?a:b;
+}
+
+/////////////////
+#include <stdio.h> 
+#include <stdlib.h>	//srand(), rand() 함수 선언 
+#include <time.h>	//time() 함수 선언
+int main(void) 
+{ 
+	int i;
+
+	srand(			);
+	for(i=0;i<100;i++){
+		printf("%d 	",rand()	);
+	} 
+	return 0;
+} 
+/////////////
+#include<stdio.h>
+int main(void)
+{
+	int i;
+	double sum = 1;
+	for (i=1; i<=10; i++){
+		sum = sum*i;
+		printf("%d! = %g\t",i,sum);
+	}
+	return 0;
+}
+
+
+#include <stdio.h>
+	fact(		);
+int main(void)
+{
+	int input;
+	printf("정수 값을 입력하세요: ");
+	scanf("%d", &input);
+	printf("%d! = %g\n",input, fact(input));
+	return 0;
+}
+double fact(double x)
+{
+	if(x == 0.0) return	;
+	else return ;
+}

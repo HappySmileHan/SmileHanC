@@ -1,0 +1,693 @@
+//7.1
+#define _CRT_SECURE_NO_WARNINGS 
+#include <stdio.h>
+int main(void)
+{
+	int score; 
+	printf("당신의 점수를 입력하고 Enter를 누르세요 : ");
+	scanf("%d",&score);
+
+	if(score<60) printf("60점 미만이므로 재수강해야 합니다.\n");
+	return 0;
+}
+//7.2
+#define _CRT_SECURE_NO_WARNINGS 
+#include <stdio.h>
+int main(void)
+{
+	int score; 
+	printf("당신의 점수를 입력하고 Enter를 누르세요 : ");
+	scanf("%d",&score);
+
+	if(score==0) printf("0점 입니다.\n");
+	if(score) printf("0점이 아닙니다.\n");
+	if(!score) printf("0점 입니다.\n");
+	return 0;
+}
+//7.3
+#define _CRT_SECURE_NO_WARNINGS 
+#include <stdio.h>
+int main(void)
+{
+	int score; 
+	printf("당신의 점수를 입력하고 Enter를 누르세요 : ");
+	scanf("%d",&score);
+
+	if(score>=90 && score<95) printf("A\n");   
+	//if(90<=score<95) printf("A\n");     
+	return 0;
+}
+//7.4
+#define _CRT_SECURE_NO_WARNINGS 
+#include <stdio.h>
+int main(void)
+{
+	int num;
+	printf("주민등록번호 뒷 자리의 첫번째 숫자를 입력하세요 : ");	
+	scanf("%d",&num);
+
+	if(num==1 || num==3) printf("당신은 남성이군요!\n");
+	if(num==2 || num==4) printf("당신은 여성이군요!\n");  
+	return 0;
+}
+//7.5
+#define _CRT_SECURE_NO_WARNINGS 
+#include <stdio.h>
+int main(void)
+{
+	int num1, num2; 
+	printf("두 개의 다른 수를 입력하고 Enter를 누르세요:");
+	scanf("%d %d",&num1, &num2);
+
+	if(num1>num2) printf("두 수 중 더 큰 수는 %d입니다.\n",num1);
+	if(num1<num2) printf("두 수 중 더 큰 수는 %d입니다.\n",num2);
+	return 0;
+}
+//7.6
+#define _CRT_SECURE_NO_WARNINGS 
+#include <stdio.h>
+int main(void)
+{
+	int score; 
+	printf("당신의 점수를 입력하고 Enter를 누르세요:");
+	scanf("%d",&score);
+
+	if(score<60) printf("60점 미만이므로 재수강해야 합니다.\n");
+	else printf("60점 이상이므로 Pass입니다.\n");
+	return 0;
+}
+//7.7
+#define _CRT_SECURE_NO_WARNINGS 
+#include <stdio.h>
+int main(void)
+{
+	int num1, num2,max;
+	printf("두 개의 다른 수를 입력하고 Enter를 누르세요:");
+	scanf("%d %d",&num1, &num2);
+
+	if(num1>num2) max=num1;
+	else max=num2;
+
+	//max=(num1>num2) ? num1 : num2;
+	printf("더 큰 수는 %d입니다.\n",max);  
+	return 0;
+}
+//7.8
+#define _CRT_SECURE_NO_WARNINGS 
+#include <stdio.h>
+int main(void)
+{
+	int num;
+	printf("당신의 주민등록번호 뒷 자리의 첫 번째 숫자를 입력하세요:");
+	scanf("%d",&num);	
+
+	if(num==1 || num==3) printf("당신은 남성이군요!\n");
+	else printf("당신은 남성이 아니군요!\n");  
+	return 0;
+}
+//7.9
+#define _CRT_SECURE_NO_WARNINGS 
+#include <stdio.h>
+int main(void)
+{
+	char ch;
+	printf("키보드로 키 하나를 입력하세요=");
+	scanf("%c",&ch);
+
+	if(ch>='a' && ch<='z') printf("영어 소문자입니다.\n");
+	else  printf("영어 소문자가 아닙니다.\n");
+	return 0;
+}
+//7.10
+#define _CRT_SECURE_NO_WARNINGS 
+#include <stdio.h> 
+int main(void) 
+{ 
+	int year; 
+	printf("2월이 29일까지 있어서 1년이 366일인 해를 윤년이라고 한다.\n"); 
+	printf("연도가 평년인지 윤년인지를 출력해주는 프로그램입니다.\n"); 
+	printf("알고 싶은 연도를 입력하세요 : "); 
+	scanf("%d", &year); 	
+	if( year%4==0 && year%100!=0 || year%400==0 )
+		printf("윤년입니다.\n"); 
+	else
+		printf("평년입니다.\n"); 
+	return 0;
+} 
+//7.11
+#define _CRT_SECURE_NO_WARNINGS 
+#include <stdio.h>
+int main(void)
+{
+	int num;
+	printf("당신의 주민등록번호 뒷자리의 첫 번째 숫자를 입력하세요:");
+	scanf("%d",&num);
+	
+	if(num==1 || num==3) 
+		printf("당신은 남성이군요!\n");
+	else if(num==2 || num==4)  
+		printf("당신은 여성이군요!\n");
+	else
+		printf("당신은 대한민국 사람이 아니군요!\n"); 
+	return 0;
+}
+//7.12
+#define _CRT_SECURE_NO_WARNINGS 
+#include <stdio.h>
+int main(void)
+{
+	char ch;
+	printf("키보드로 키 하나를 입력하세요:");
+	scanf("%c",&ch);
+	if(ch>='a' && ch<='z') 
+		printf("영어 소문자입니다.\n");
+	else if(ch>='A' && ch<='Z') 
+		printf("영어 대문자입니다.\n");
+	else 
+		printf("영문자가 아닙니다.\n");
+	return 0;
+}
+//7.13
+#define _CRT_SECURE_NO_WARNINGS 
+#include <stdio.h>
+int main(void) 
+{
+	int value;
+	printf("1~3까지의 수를 입력하세요:");
+	scanf("%d",&value);
+
+	if(value==1) printf("1을 입력하셨습니다.\n");
+	else if(value==2) printf("2를 입력하셨습니다.\n");
+	else if(value==3) printf("3을 입력하셨습니다.\n");
+	else printf("잘못 입력하셨습니다.\n");
+  	return 0;
+}
+//7.14
+#define _CRT_SECURE_NO_WARNINGS  
+#include <stdio.h>
+int main(void)
+{
+	int num1, num2, num3, max;
+	printf("세 개의 다른 수를 입력하고 Enter를 누르세요:");
+	scanf("%d %d %d", &num1, &num2, &num3);
+	if (num1 > num2) max = num1;
+	else max = num2;
+	if (num3 > max) max = num3;
+	//else max = max;
+	// max=(num1>num2) ? num1 : num2;
+	// max=(num3>max) ? num3 : max; 
+	printf("입력받은 수는 %d, %d, %d이고,\n", num1, num2, num3);
+	printf("최댓값은 %d입니다.\n", max);
+	return 0;
+}
+//7.15
+#define _CRT_SECURE_NO_WARNINGS  //Visual Studio에서만 사용
+#include <stdio.h>
+int main(void)
+{
+	int num1, num2, num3, max, min;
+	printf("세개의 다른 수를 입력하고 Enter를 누르세요:");
+	scanf("%d %d %d", &num1, &num2, &num3);
+	if (num1 > num2) { max = num1; min = num2; }
+	else { max = num2; min = num1; }
+	if (num3 > max) max = num3;
+	if (num3 < min) min = num3;
+	printf("최댓값=%d, 최솟값=%d\n", max, min);
+	return 0;
+}
+//7.16
+#define _CRT_SECURE_NO_WARNINGS 
+#include <stdio.h>
+int main(void)
+{
+	int score; 
+	printf("당신의 점수를 입력하고 Enter를 누르세요:");
+	scanf("%d",&score);
+	if(score<60) printf("F\n");
+	else if(score>=60 && score <65) printf("D\n");
+	else if(score>=65 && score <70) printf("D+\n");
+	else if(score>=70 && score <75) printf("C\n");
+	else if(score>=75 && score <80) printf("C+\n");
+	else if(score>=80 && score <85) printf("B\n");
+	else if(score>=85 && score <90) printf("B+\n");
+	else if(score>=90 && score <95) printf("A\n");
+	else if(score>=95 && score <=100) printf("A+\n");
+	else printf("입력이 올바르지 않습니다!\n"); 
+	return 0;
+}
+//7.17
+#define _CRT_SECURE_NO_WARNINGS 
+#include <stdio.h>
+int main(void) 
+{
+	int value;	
+	printf("1~3까지의 수를 입력하세요:");
+	scanf("%d",&value);
+	
+	switch(value){
+	case 1 :
+		printf("1을 입력하셨습니다.\n");
+		break;
+	case 2 :
+		printf("2를 입력하셨습니다.\n");
+		break;
+	case 3 :
+		printf("3을 입력하셨습니다.\n");
+		break;
+	default: 	
+		printf("다시 입력하세요.\n");
+		break;
+	}
+	return 0;
+}
+//7.18
+#define _CRT_SECURE_NO_WARNINGS 
+#include <stdio.h>
+int main(void) 
+{
+	int value;	
+	printf("1~3까지의 수를 입력하세요:");
+	scanf("%d",&value);
+	
+	switch(value){
+	case 1 :
+		printf("1을 입력하셨습니다.\n");		
+	case 2 :
+		printf("2를 입력하셨습니다.\n");		
+	case 3 :
+		printf("3을 입력하셨습니다.\n");		
+	default: 	
+		printf("다시 입력하세요.\n");		
+	}
+	return 0;
+}
+//7.19
+#define _CRT_SECURE_NO_WARNINGS 
+#include <stdio.h>
+int main(void)
+{
+	char op;         // 연산자 저장 변수
+	int num1, num2; // 피연산자 저장 변수
+	printf("덧셈과 뺄셈만 가능합니다\n");
+	printf("계산하려는 수식(예:10+20)을 입력하세요:");
+	scanf("%d%c%d",&num1,&op,&num2); //10+20
+
+	switch(op){
+	case '+' : 
+		printf("덧셈 결과는 %d입니다.\n",num1+num2);
+		break;
+	case '-' : 
+		printf("뺄셈 결과는 %d입니다.\n",num1-num2);
+		break;
+	default  : 
+		printf("다시 입력하세요\n");
+		break;
+	}
+	return 0;
+}
+//7.20
+#include <stdio.h>
+int main(void)
+{
+	int n,sum=0;
+
+	for(n=1;n<=100;n++) sum=sum+n;
+	printf("%d\n",sum);
+	return 0;
+}
+//7.21
+#include <stdio.h>
+int main(void)
+{
+	int n,sum=0;
+
+	for(n=1;n<=100;n++);
+	  sum=sum+n;
+	printf("%d\n",sum);
+	return 0;
+}
+//7.22
+#include <stdio.h>
+int main(void)
+{
+	int i;
+	for(i=0;i<128;i++)
+		printf("%3d=%c   ",i,i);	
+	return 0;
+}
+//7.23
+#define _CRT_SECURE_NO_WARNINGS 
+#include <stdio.h>
+int main(void)
+{
+	char op;
+	int num1, num2;
+	for( ; ; )   //추가
+	{          //추가 
+	printf("\n덧셈과 뺄셈만 가능합니다\n");
+	printf("끝내려면 0+0을 입력하세요\n");  //추가
+	printf("계산하려는 수식(예:10+20)을 입력하세요:");
+	scanf("%d%c%d",&num1,&op,&num2); //10+20
+	if(num1==0 && num2==0) break;        //추가
+	switch(op){
+	case '+' : 
+	printf("덧셈 결과는 %d입니다.\n",num1+num2);
+	break;
+	case '-' : 
+	printf("뺄셈 결과는 %d입니다.\n",num1-num2);
+	break;
+	default  : 
+	printf("다시 입력하세요\n");
+	break;
+	}// switch~case문 끝
+	}  //추가, for문 끝
+	return 0;
+}
+//7.24
+#define _CRT_SECURE_NO_WARNINGS 
+#include <stdio.h> 
+int main(void) 
+{ 
+	int i,num,sum=0,total; //누적하는 변수 sum은 반드시 초기화 	
+	printf("임의 개수의 수 평균을 구하는 프로그램입니다.\n"); 
+	printf("계산하려는 수는 몇 개입니까=="); 
+	scanf("%d",&total); 
+
+	for(i=1;i<=total;i++){ 
+		printf("%d번째 수를 입력하세요=",i); 
+		scanf("%d",&num); 
+		sum+=num; 
+	} 
+	printf("합은 %d, 평균은 %lf입니다.\n",sum, (double)sum/total); 
+	return 0;
+} 
+//7.25
+#include <stdio.h>
+int main(void)
+{
+	int n,m;
+
+	for(n=1;n<=1000;n++)
+	{
+		printf("%d ",n);
+		for(m=1;m<=n*10000;m++);    //점점 느리게 하는 부분
+	}
+	return 0; 
+}
+//7.26
+#include <stdio.h>
+int main(void)
+{
+	int i,j;
+	for(i=1;i<=10;i++){
+		for(j=0;j<i;j++){
+			printf("%3d",i);
+		}
+		printf("\n");
+	}
+	return 0;
+}
+//7.27
+#include <stdio.h>
+int main(void)
+{
+	int dan,gop;
+
+	for(dan=2;dan<=9;dan++){   //단
+		for(gop=1;gop<=9;gop++){ //곱
+			printf("%dx%d=%2d ",dan,gop,dan*gop);
+		}
+		printf("\n");
+	}
+	return 0;
+}
+//////////////
+// for문
+#include <stdio.h>
+int main(void)
+{
+	int n;
+	for(n=1;n<=1000;n++) {
+		printf("%d ",n);
+	}
+
+	return 0;
+}
+//////////////
+// while문
+#include <stdio.h>
+int main(void)
+{	
+	int n=1;
+	while(n<=1000){ 
+		printf("%d ",n);
+		n++; 
+	}
+	return 0;
+}
+//////////////
+// for문
+#include <stdio.h>
+int main(void)
+{	
+	int n;
+	for(n=1;n<=100;n++){ 
+		printf("소프트 ");	   
+	}
+
+	return 0;
+}
+/////////////
+// while문
+#include <stdio.h>
+int main(void)
+{
+	int n=1;
+	while(n<=100){ 
+		printf("소프트 ");
+		n++;
+	}
+	return 0;
+}
+///////////////
+//7.28
+#define _CRT_SECURE_NO_WARNINGS 
+#include <stdio.h>
+int main(void)
+{
+	int a,b,r;
+	printf("두 정수를 입력하시오:");
+	scanf("%d %d",&a, &b);
+	while(b!=0){	// b가 0이 아닐 때까지 
+		r=a%b;
+		a=b;
+		b=r;
+		printf("r=%d a=%d b=%d\n",r,a, b);
+	}
+	printf("최대공약수 : %d\n",a);
+	return 0;
+}
+///////////////
+// while문
+#include <stdio.h>
+int main(void)
+{
+	int n=1,sum=0;
+	while(n<=100){
+		sum+=n;
+		++n;
+	}
+	printf("%d\n",sum); 
+	return 0;
+}
+/////////////
+// do~while문
+#include <stdio.h>
+int main(void)
+{
+	int n=1,sum=0;
+	do{
+		sum+=n;
+		++n;
+	}while(n<=100);
+	printf("%d\n",sum); 
+	return 0;
+}
+/////////////
+//7.29
+#include <stdio.h>
+#include <conio.h>  //_getche()
+int main(void)
+{
+	char key; 
+
+	printf("키 하나를 누르세요.\nq를 누르면 프로그램을 종료합니다 :\n");
+	do{
+		key=_getche();
+	}while(key !='q');
+	printf("\n바이~~\n");
+	return 0;
+}
+//7.30
+#define _CRT_SECURE_NO_WARNINGS 
+#include <stdio.h>
+int main(void)
+{
+	int score; 
+	printf("당신의 점수를 입력하고 Enter를 누르세요\n");
+	do{
+		printf("점수가 0에서 100사이의 값이 아니면 다시 입력해야 합니다:");
+		scanf("%d",&score);	   
+	}while(!(score>=0 && score<=100));
+	if(score<60) printf("60점 미만이므로 재수강해야 합니다.\n");
+	else printf("60점 이상이므로 Pass입니다.\n");
+	return 0;
+}
+//7.31
+#define _CRT_SECURE_NO_WARNINGS 
+#include <stdio.h>
+int main(void)
+{
+	int menu; 
+	do{
+		printf("1:추가\n");
+		printf("2:삭제\n");
+		printf("3:저장\n");
+		printf("원하는 작업을 선택하세요:");
+		scanf("%d",&menu);
+	}while(!(menu>=1 && menu<=3));
+	printf("%d를 선택했습니다.\n",menu);
+	return 0;
+}
+//7.32
+#include <stdio.h>
+int main(void)
+{
+	int n=1,sum=0;
+
+	while(1){
+		sum+=n;
+		if(sum>10000) break;
+		++n;
+	}
+	printf("n=%d, sum=%d\n",n,sum); 
+	return 0;
+}
+//7.33
+#include <stdio.h>
+int main(void)
+{
+	int n;
+	for(n=1;n<=100;n++)
+	{
+		if(n%2==0) continue;
+		printf("%3d ",n);
+	}
+	return 0;   
+}
+///////
+#include<stdio.h>
+	int main(void) 
+	{
+		int dan,gop;
+		while(    )
+		{
+			printf("구구단을 출력하는 프로그램입니다.\n");
+			printf("0을 입력하면 끝납니다.\n");
+			printf("출력을 원하는 단을 입력하세요:");
+			scanf("%d", &dan);
+			if(dan==0)           
+			printf("%d단입니다.\n",      );
+			for(                     ){
+				printf("%dx%d=%2d\n",dan,gop, dan*gop);
+			}  //for
+		}//while
+		return 0;
+	}
+//////////
+	#include <stdio.h> 
+	int main(void) 
+	{ 
+		double weight, height,bmi; 
+		printf("신체질량지수(Body Mass Index:BMI)에 의한 비만도 \n"); 
+		printf("계산법으로 비만도를 측정해주는 프로그램입니다.\n"); 
+		printf("이 지수가 30 이상 고도비만, 25~29.9 비만, 23~24.9 과체중,\n");
+		printf("18.6∼22.9 정상, 18.5 이하 저체중으로 판정됩니다다.\n"); 
+
+		printf("체중을 입력하세요(kg)="); 
+		scanf("%lf",&weight); 
+		printf("키을 입력하세요(cm)="); 
+		scanf(                );
+		height=height/        ;    //키를 m단위로 환산
+		bmi=                      ;
+
+		printf("당신의 BMI는 %f입니다.\n",bmi);
+		if(bmi>=30) printf("오 테러블~~고도비만입니다.\n"); 
+		       ( bmi>=25.0 && bmi<30.0 ) printf("오 노우~~비만입니다.\n"); 
+		else if(                            ) printf("웁스~~과체중입니다.\n"); 
+		else if( bmi>=18.6 && bmi<23.0 ) printf("착한 몸매~~정상입니다.\n"); 
+		      printf("야참이 필요한 당신~~저체중입니다.\n"); 
+		return 0;
+	}
+//////////////
+#include <stdio.h>
+	int main(void)
+	{
+		int i,j,k, num, count=1;
+		printf("직각삼각형의 밑변, 높이, 빗변을 X, Y, Z로 할 때,\n");
+		printf("X²+Y²=Z²을 만족하는 자연수를 피타고라스 수라고 합니다.\n");
+		printf("자연수 어디까지 피타고라스 수 조합을 얻고 싶습니까==");  
+		scanf("%d",&num);
+		for(i=              ){
+		for(j=i;            ){
+			for(k=                ){
+				if(k*k==(i*i+j*j)) {
+					printf("%3d: %3d %3d %3d\n",count,i,j,k);
+					count++;
+				}
+			}
+		}
+		}
+	 	return 0; 
+}
+//////////////
+#define _CRT_SECURE_NO_WARNINGS  
+#include <stdio.h> 
+#include <limits.h> //INT_MIN, INT_MAX가 정의되어 있음 
+int main(void)
+{
+	int i, num, sum = 0, total, max = INT_MIN, min = INT_MAX; 
+	//누적하는 변수 sum은 반드시 초기화 
+	// max는 int형으로 표현할 수 있는 가장 작은 값 INT_MIN으로 초기화 
+	// min은 int형으로 표현할 수 있는 가장 큰 값 INT_MAX로 초기화 
+	for (;;) {
+		sum = 0, max = INT_MIN, min = INT_MAX;//반복하므로 여기서 초기화 매우 중요!
+		printf("\n임의의 수의 평균을 구하는 프로그램입니다.\n");
+		printf("계산하려는 수는 몇 개입니까(끝내려면 0)==");
+		scanf("%d", &total);
+		if (total == 0) break;
+		for (i = 1; i <= total; i++) {
+			printf("%d번째 수를 입력하세요=", i);
+			scanf("%d", &num);
+			sum += num;
+			max = (num > max) ? num : max;
+			min = (num < min) ? num : min;
+		}
+		printf("합=%d,평균=%.2f, 최댓값=%d, 최솟값=%d\n", sum, (double)sum / total, max, min);
+	}
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

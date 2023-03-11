@@ -1,0 +1,86 @@
+//5.1
+#include <stdio.h>
+#define AA  2
+#define sum3(i,j,k)   ((i)+(j)+(k))
+int main(void)
+{
+	printf("%d\n",sum3(AA,4,6));
+	printf("%d\n",sum3(AA,4,6)/2);
+	printf("%f\n",sum3(1.2,2.3,3.4));
+	printf("%d\n",AA);
+	return 0;
+}
+//5.2
+#include <stdio.h>
+#define AA  2
+#define sum3(i,j,k)   ((i)+(j)+(k))
+int main(void)
+{
+	printf("%d\n",sum3(AA,4,6));
+	printf("%d\n",sum3(AA,4,6)/2);
+	printf("%d\n",AA);
+	return 0;
+}
+//5.3
+#include <stdio.h>
+int main()
+{
+	#ifdef _DEBUG
+		printf("Debug 모드");
+	#else
+		printf("Release 모드");
+	#endif
+	return 0;
+} 
+//5.4
+#include <stdio.h>
+#define ST(ii) # ii //매크로 함수의 매개변수 ii를 문자열로 만든다.
+int main(void)
+{
+	printf("%s  %s",ST(I am),"Han");//매개변수 I am은 문자열 "I am"이 됨 
+	return 0;
+}
+//5.5
+#include <stdio.h>
+#define PLUS(a) a##1+a##2+a##3
+#define PRINT(p) printf("%d %d\n",p##t,p##s);
+int main(void)
+{
+	int d1 = 10, d2 = 20, d3 = 30;
+	int e1 = 4, e2 = 5, e3 = 6;
+	int tott, tots;
+
+	tott = PLUS(d); // tott=d1+d2+d3;
+	tots = PLUS(e); // tots=e1+e2+e3;
+
+	PRINT(tot); // printf("%d %d\n",tott,tots);
+	return 0;
+}
+//5.6
+#include <stdio.h>
+int main(void)
+{
+	printf("__LINE__ : %d\n",__LINE__);   
+	printf("__DATE__ : %s\n",__DATE__);
+	printf("__LINE__ : %d\n",__LINE__);
+	printf("__TIME__ : %s\n",__TIME__);
+	printf("__TIMESTAMP__ : %s\n",__TIMESTAMP__);
+	printf("__FILE__ : %s\n",__FILE__);
+	return 0;
+}
+//////////////
+#include <stdio.h>
+#define SQUARE1(a) ( a * a )
+#define SQUARE2(a) ( (a) * (a) )
+#define TOTAL 10
+
+int main(void)
+{
+	int x=3;
+	printf("%d  %d\n",SQUARE1(2), SQUARE2(2));
+	printf("%d  %d\n",SQUARE1(x), SQUARE2(x));
+	printf("%d  %d\n",SQUARE1(x+2), SQUARE2(x+2));
+	printf("Total==%d",TOTAL);
+	return 0;
+}
+

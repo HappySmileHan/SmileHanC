@@ -1,0 +1,568 @@
+//11.1
+#include <stdio.h>
+int main(void)
+{
+	int x=10,y ;  
+	int *px;	// 선언문, 포인터 px선언
+	
+	px=&x;	// 포인터에 x의 주소 대입
+	y=*px;	// 실행문, px의 주소로 가서 값을 가져옴
+
+	printf("x=%d\t &x=%p\n",x,&x);
+	printf("px=%p\t &px=%p\t *px=%d \n",px,&px,*px);
+	printf("y=%d\t &y=%p\n",y,&y);
+	return 0;
+}
+//11.2
+#include <stdio.h>
+int main(void)
+{
+	int *pi;		//정수형 포인터 pi
+	char *pc;		//문자형 포인터 pc
+	double *pd;	//배정도형 포인터 pd
+
+	printf("%d %d %d\n",sizeof(pi),sizeof(pc),sizeof(pd));
+	printf("%d %d %d\n",sizeof(*pi),sizeof(*pc),sizeof(*pd));
+	return 0;
+}
+
+//11.3
+#include <stdio.h>
+int main(void)
+{
+	char c;
+	int i;
+	double d;
+
+	char *pc=&c;
+	int *pi=&i;
+	double *pd=&d;
+
+	printf("%p   %p\n",pc,pc+1);
+	printf("%p   %p\n",pi,pi+1);
+	printf("%p   %p\n",pd,pd+1);
+	return 0;
+}
+
+//11.4
+#include <stdio.h>
+int main(void)
+{
+	int ival=10;
+	char cval='A';
+	double dval=15.6;   
+	void *ptemp;   //void형 포인터
+
+	ptemp=&ival;   //int형 변수의 주소 저장, cast 연산자 필요 없음
+	printf("%d\n",*(int*)ptemp);//void형 포인터를 int형 포인터로 형 변환  
+	ptemp=&cval;   //char형 변수의 주소 저장
+	printf("%c\n",*(char*)ptemp);//void형 포인터를 char형 포인터로 형 변환 
+	ptemp=&dval;   //double형 변수의 주소 저장
+	printf("%f\n",*(double*)ptemp);//double형 포인터로 형 변환 
+	return 0;
+}
+
+//11.5
+#include <stdio.h>
+int main(void)
+{	  
+	int x[5]={10,20,30,40,50};
+	int i;
+	printf("x=%p\n",x);
+	for(i=0;i<5;i++)
+		printf("%p=%d, %p=%d\n",&x[i],x[i],x+i,*(x+i));     
+	return 0;
+}
+
+//11.6
+#include <stdio.h>
+int main(void)
+{
+	int a[2][3]={1,2,3,4,5,6};
+	int i,j;
+ 
+	printf("%d %d %d %d\n",a[1][2],*(a[1]+2),(*(a+1))[2],*(*(a+1)+2));
+	for(i=0;i<2;i++)for(j=0;j<3;j++)
+		printf("%d %d %d %d\n",a[i][j],*(a[i]+j),(*(a+i))[j],*(*(a+i)+j));
+	return 0;
+}
+
+//11.7
+#include <stdio.h>
+int main(void)
+{
+	char cha[4]="ABC";	//배열
+	char *chp="ABC";	//포인터
+
+	printf("cha[0] : %p=%c %c\n",cha, cha[0],*cha);
+	printf("chp+0  : %p=%c %c\n",chp, chp[0],*chp);
+	
+	printf("cha[1] : %p=%c %c\n",cha+1,cha[1],*(cha+1));
+	printf("chp+1  : %p=%c %c\n",chp+1,chp[1],*(chp+1));
+
+	printf("cha=%s chp=%s\n",cha, chp);
+	return 0;
+}
+
+//11.8
+#include <stdio.h>
+char* vending(int x);	//함수 선언
+void view(char *ch);	//함수 선언
+int main(void)
+{
+	char *name="소프트";
+	//char name[7]="소프트";
+
+	printf("%s\n",vending(1));
+	view(name);
+	return 0;
+}
+char* vending(int x)	//함수 정의
+{
+	if (x==1) return "커피";
+	else return "유자차";
+}
+void view(char *ch)	//함수 정의
+{
+	printf("%s\n",ch);
+}
+
+//11.9
+#include <stdio.h>
+int main(void)
+{
+	int i;
+	char ch[5][9]={"양천구",	//2차원 배열
+//	char *ch[5]={"양천구",	//포인터 배열
+		"노원구",
+		"강남구",
+		"남양주시",
+		"Seoul"
+	};
+
+	for(i=0;i<5;i++)printf("ch[%d]= %p   %s\n",i,ch[i],ch[i]);
+	return 0;	
+}
+
+//11.10
+#define _CRT_SECURE_NO_WARNINGS //strcpy 보안 취약 오류 무시
+#include <stdio.h>
+#include <string.h>
+int main(void)
+{
+	char s1[5],s3[3],s4[5];
+	//char *s1, s3[3],s4[5];	//오류 발생
+	char s2[5]="soft";		//원본
+	//char *s2="soft";		//가능!
+	strcpy(s1,s2);
+	printf("s1=%s,s2=%s\n",s1,s2);
+	strcpy(s3,s2);  //실행 시 심각한 오류
+	strncpy(s4,s2,3);//s2의 3바이트를 s4에 복사, NULL을 복사하지 않아 오류
+	printf("s1=%s,s2=%s,s3=%s,s4=%s\n",s1,s2,s3,s4);
+	return 0;
+}
+
+//11.11
+#define _CRT_SECURE_NO_WARNINGS //strcat, strncat 보안 취약 오류 무시
+#include <stdio.h>
+#include <string.h>
+int main(void)
+{
+	char s1[15]="soft"; //5번째 원소부터는 모두 NULL 값이 들어감
+	char s2[5]="ware";
+	printf("s1=%s \t s2=%s\n",s1,s2);
+	strcat(s1,s2);//s2를 s1에 연결
+	printf("s1=%s \t s2=%s\n",s1,s2);
+	strncat(s1,s2,2);//s2의 2바이트를 s1에 연결
+	printf("s1=%s \t s2=%s\n",s1,s2);
+	return 0;
+}
+
+//11.12
+#include <stdio.h>
+#include <string.h>
+int main(void)
+{
+	char *s1="ABC"; //A:65, B:66, C:67
+	char *s2="ABD"; //A:65, B:66, D:68
+	char *s3="abd"; //a=97, b:98, d:100
+	int a,b,c;
+
+	a=strcmp(s1,s2); //(65 66 67, 65 66 68)
+	b=strcmp(s1,s3); //(65 66 67, 97 98 100)
+	c=strncmp(s1,s2,2); //(65 66, 65 66), 처음 두 개만 비교
+	printf("a=%d  b=%d  c=%d\n",a,b,c);
+	return 0;
+}
+//11.13
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <string.h>
+int main(void)
+{
+	char name[100][20];
+	int i=0,j;
+	do{
+		printf("이름을 입력('끝'을 입력하면 종료):");
+		scanf("%s",name[i]);
+		if(strcmp(name[i],"끝")==0) break;
+		i++;
+	}while(1);
+
+	for(j=0;j<i;j++)  printf("%s\n",name[j]);
+	return 0;
+}
+
+//11.14
+#include <stdio.h>
+#include <string.h>  
+int main(void)
+{
+	char s1[5]="soft";
+
+	printf("%d %d %d\n",strlen(s1),strlen("abc"), strlen("홍길동"));
+	return 0;
+}
+
+//11.15
+#include <stdio.h>
+#include <string.h>  
+int main(void)
+{
+	char s[15]="I love you";
+	char csearch='v';
+	char ssearch[]="you";
+	char *psearch;
+
+	psearch=strchr(s,csearch);
+	printf("s=%p  psearch=%p\n",s,psearch);
+	
+	psearch=strstr(s,ssearch);
+	printf("s=%p  psearch=%p\n",s,psearch);
+	return 0;
+}
+/////////////
+#include <stdio.h>
+int main(void)
+{
+	int a=2,b=5, temp;
+	int c=3, d=4;
+
+	temp=a;
+	a=b;
+	b=temp;
+	printf("a=%d, b=%d\n",a,b);	//5, 2
+
+	temp=c;
+	c=d;
+	d=temp;
+	printf("c=%d, d=%d\n",c,d);	//4, 3
+	return 0;
+}
+///////////////
+#include <stdio.h>
+void swap(int a, int b);
+int main(void)
+{
+	int a=2,b=5,c=3,d=4;    
+	swap(a,b);
+	printf("swap 호출 후 : a=%d, b=%d\n",a,b);
+	swap(c,d);
+	printf("swap 호출 후 : c=%d, d=%d\n",c,d);
+	return 0;
+}
+void swap(int a, int b)
+{
+	int temp;
+	temp=a;
+	a=b;
+	b=temp;
+	printf("swap 함수 안 : a=%d, b=%d\n",a,b);
+}
+/////////////////
+//11.16
+#include <stdio.h>
+void swap(int *pa, int *pb); //함수 선언
+int main(void)
+{
+	int a=2,b=5;
+	printf("전: a=%d, b=%d\n",a,b);
+	swap(&a,&b); //call by address로 호출
+	printf("후: a=%d, b=%d\n",a,b);
+	return 0;
+}
+void swap(int *pa, int *pb)
+{ //int *pa=&a, int *pb=&b가 전달 됨 
+	int temp;
+	temp=*pa; //&a의 값인 2를 temp에 저장
+	*pa=*pb;  //&b의 값인 5를 &a의 값으로 저장
+	*pb=temp; //temp를 &b의 값으로 저장
+	printf("안: *pa=%d, *pb=%d\n",*pa,*pb);
+}
+
+//11.17
+#define _CRT_SECURE_NO_WARNINGS 
+#include <stdio.h> 
+void four(int, int, int*, int*, int*, double*); 
+int main(void) 
+{ 
+	int a,b; 
+	int sum,sub,mul; 
+	double div; 
+	printf("사칙연산을 하고 싶은 두 정수 입력:"); 
+	scanf("%d %d",&a,&b); 
+	four(a,b,&sum,&sub,&mul,&div); 
+	printf("두 정수 %d와 %d의\n",a,b);
+	printf("합=%d 차=%d 곱=%d 나눗셈=%f입니다.\n",sum,sub,mul,div); 
+	return 0;
+} 
+void four(int a,int b, int*psum, int *psub, int *pmul, double *pdiv) 
+{ 
+	*psum=a+b; 
+	*psub=a-b; 
+	*pmul=a*b; 
+	*pdiv=(double)a/b; //cast 연산자 
+} 
+////////////////
+//이 소스는 확장자가 .cpp이어야 오류가 발생하지 않는다.
+#include <stdio.h>
+void swap(int &, int &);
+int main(void)
+{
+	int a=2, b=5;
+	printf("전: a=%d, b=%d\n",a,b);
+	swap(a,b);		//호출할 때는 call by value처럼 보임 
+	printf("후: a=%d, b=%d\n",a,b);
+	return 0;
+}
+void swap(int &ra, int &rb) 	//형식매개변수가 참조자
+{	//int &ra=a, int &rb=b처럼 참조자로 받음
+	//ra가 바뀌면 main()의 a가 바뀌고, rb가 바뀌면 main()의 b가 바뀜 
+	int temp;
+	temp=ra;
+	ra=rb;
+	rb=temp;
+}
+
+///////////////////
+//11.18
+#include <stdio.h>
+#include <stdlib.h>  //malloc(), free(), exit()
+int main(void)   
+{
+	int *pi, x;
+	pi=(int*)malloc(sizeof(int));
+
+	if(pi==NULL){   // pi가 널 포인터이면 메모리 할당이 실패
+		printf("메모리 할당이 되지 않았습니다.");
+		exit(1);       //main() 함수 끝냄
+	}
+	*pi=200; //주소의 값으로 200을 할당
+             x=100;
+	printf("메모리에 할당된 값:%d, x=%d\n",*pi,x);
+ 	free(pi);  // 동적 할당한 메모리 해제
+	return 0;
+}
+
+//11.19
+#include <stdio.h>
+#include <stdlib.h>  //malloc(), free(), exit()
+int main(void)   
+{
+	int *pi;
+	pi=(int*)malloc(3*sizeof(int)); //3개
+	if(pi==NULL){   // pi가 널 포인터이면 메모리 할당이 실패
+		printf("메모리 할당이 되지 않았습니다.");
+		exit(1);       //main() 함수 끝냄
+	}
+	*pi=10; *(pi+1)=20; *(pi+2)=30;
+	printf("%d %d %d\n",pi[0],pi[1],pi[2]);
+  pi[0]=1; pi[1]=2; pi[2]=3;
+	printf("%d %d %d\n",pi[0],pi[1],pi[2]);
+	free(pi);  // 동적 할당한 메모리 해제
+	return 0;
+}
+
+//11.20
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+int main(void)
+{
+	int size,n,*num;
+	printf("몇 개의 숫자를 입력하시겠습니까:");
+	scanf("%d",&size);
+	num=(int *)malloc(size*sizeof(int));
+	if (num == NULL) {
+		printf("메모리 할당이 되지 않았습니다.");
+		exit(1);
+	}
+	for(n=0; n<size; n++) {
+		printf("숫자를 입력하십시오:");
+		scanf("%d",&num[n]);
+	}
+	printf("입력한 숫자:\n");
+	for (n=0; n<size; n++) printf("%d   ",num[n]);
+	free(num);
+	return 0;
+}
+///////
+#include <stdio.h>
+void print(void);
+int main(void)
+{
+	void (*view)(void);//함수 포인터 선언
+	view = print;  //함수 포인터에 print() 함수의 주소값을 대입
+	view(); 	 //print()로 호출하는 것과 동일
+	return 0;
+}
+void print(void)
+{
+	printf("나는 print함수입니다.\n");
+}
+////////////////
+
+//11.21
+#include <stdio.h>
+int add(int, int);
+int main(void)
+{
+	int(*pAdd)(int, int);  // add함수의 함수 포인터 pAdd 
+
+	pAdd=add;  // 함수의 이름은 함수의 시작 주소
+	printf("add(3,4)=%d\n",add(3,4));
+	printf("pAdd(3,4)=%d\n",pAdd(3,4));
+	return 0;
+}
+int add(int x, int y)
+{
+	return x+y;
+}
+//11.22
+#include <stdio.h> 
+#include <stdlib.h> 
+#include <time.h>		//time()
+int comp(const void *i, const void *j); 
+int main(void) 
+{ 
+	int sort[100], i; 
+	srand(time(NULL));
+	for(i=0; i<100; i++)  sort[i] = rand(); 
+	for(i=0; i<100; i++)  printf("%d ", sort[i]); 
+	printf("\n정렬된 결과\n");
+	qsort(sort, 100, sizeof(int), comp); 
+	for(i=0; i<100; i++)  printf("%d ", sort[i]); 
+	return 0; 
+} 
+int comp(const void *i, const void *j) 
+{ 
+	return *(int *)i - *(int *)j; 
+}
+//11.23
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h> 
+#include <time.h>		//time()
+int comp(const void *i, const void *j); 
+int main(void) 
+{
+	int sort[100], i, key;
+	int *p; 
+	srand(time(NULL));
+	for(i=0; i<100; i++) sort[i] = rand(); 
+	qsort(sort, 100, sizeof(int), comp); 
+	for(i=0; i<100; i++) printf("%d ", sort[i]); 
+	printf("\n찾을 수: ");
+	scanf("%d", &key); 
+	p = bsearch(&key, sort, 100, sizeof(int), comp);
+	if(p==NULL) printf("%d는 없습니다.\n",key);
+	else printf("%d는 있습니다.\n",key);
+	return 0;
+} 
+int comp(const void *i, const void *j) 
+{
+	return *(int *)i - *(int *)j;
+}
+//11.24
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+int sum(int a, int b); 
+int sub(int a, int b); 
+int mul(int a, int b); 
+int main(void) { 
+	int result; 
+	int y, x, menu; 
+	int (*p[3]) (int, int)={sum, sub, mul};   //함수 포인터 배열 초기화
+	while(1){ 
+		printf("0:덧셈, 1:뺄셈, 2:곱셈, 3:종료\n"); 
+		printf("메뉴를 선택하세요:"); 	scanf("%d", &menu); 
+		if(menu==3) break;
+		printf("두 개의 정수 입력:");	scanf("%d %d",&x,&y);
+		result = p[menu](x,y);  //메뉴에서 선택한 함수 호출 
+		printf("결과 : %d\n", result); 
+	} 
+	return 0; 
+} 
+int sum(int a, int b) { return (a+b); } 
+int sub(int a, int b) { return (a-b); } 
+int mul(int a, int b) { return (a*b); } 
+/////////
+#include <stdio.h>
+int main(void)
+{
+	int a[5]={1,2,3,4,5};
+	int sum=0,*pa=a;
+	while(pa<=&a[4]){
+		printf("%p=%d\n",pa, *pa);
+		sum+=*pa++; //sum=sum+*pa;pa=pa+1;
+	}
+	printf("sum=%d\n",sum);
+	return 0;
+}
+//////
+#include <stdio.h>
+void myStrcpy(char *to, char *from);
+int main(void) 
+{
+	char str[100];
+
+	myStrcpy(str, "strcpy()함수를 직접 구현");
+	printf("%s\n",str);
+	return 0;
+}
+void myStrcpy(char *to, char *from) 
+{
+	while(*from) *to++ = *from++;
+	*to++ = '\0';
+}
+/////////////////
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h> 
+#include <string.h>
+void strsort(char str[][9], int n); 
+int main(void) 
+{ 
+	int i; 
+	char ch[5][9]={"양천구", "노원구", "강남구", "남양주시", "경기도"};
+
+	strsort(ch, 5); 
+	for(i=0; i<5; i++) printf("%s\n",ch[i]);
+	return 0;	
+} 
+void strsort(char str[][9], int n)
+{ 
+	int i, j; 
+	char temp[9]; //문자열 교환을 위한 문자 배열 
+
+ 	for(i=0; i<n-1;i++){
+		for(j=i+1;j<n;j++){
+			if(strcmp(str[i],str[j]) > 0){  
+				strcpy(temp, str[i]); 
+				strcpy(str[i], str[j]);  
+				strcpy(str[j], temp); 
+			}
+		}
+	}
+}
+
+

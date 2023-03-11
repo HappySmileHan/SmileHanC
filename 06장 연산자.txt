@@ -1,0 +1,237 @@
+//6.1
+#include <stdio.h>
+int main(void)
+{
+	printf("5+2-3*2/2=%d\n",5+2-3*2/2); 
+	printf("10/4=%d\n",10/4); 
+	printf("%f\n", 10/4);
+	printf("%f %f %f\n",10/4.0,10.0/4,10.0/4.0);  
+	printf("10%%4=%d\n",10%4); 
+	return 0;
+}
+//6.2
+#include <stdio.h>
+int main(void)
+{
+	int x=10;
+	int y=+10;
+	int z=-10;
+
+	printf("x=%d -x=%d \n",x, -x);
+	printf("y=%d -y=%d \n",y,-y);
+	printf("z=%d -z=%d \n",z,-z);
+	printf("z*-1=%d z*(-1)=%d -1*z=%d \n",z*-1, z*(-1),-1*z);
+	return 0;
+}
+//6.3
+#include <stdio.h>
+int main(void)
+{
+	int a = 5; 
+	printf("%d\n", a);
+	a = a + 5; printf("%d\n", a);	// 10	
+	a += 5; printf("%d\n", a);	// 15, a = a + 5 
+	a -= 5; printf("%d\n", a);	// 10, a = a - 5
+	a *= 5; printf("%d\n", a);	// 50, a = a * 5
+	a /= 2; printf("%d\n", a);	// 25, a = a / 2
+	a *= a + 5; printf("%d\n", a);//a = a*(a+5) = 25*30   
+	return 0;
+}
+//6.4
+#include <stdio.h>
+int main(void)
+{
+	int a = 10, b=20;
+	printf("%d\n", 1<2);
+	printf("%d\n", 1<=2);
+	printf("%d\n", 1>2);
+	printf("%d\n", 1>=2);
+	printf("%d\n", a>b);
+	printf("%d\n", 'A'>'B');
+	printf("%d\n", 2.5>3.5);
+	return 0;
+}
+//6.5
+#include <stdio.h>
+int main(void)
+{
+	int a = 10, b = 20, c = 10;
+	printf("%d\n", 1 == 2);	//0
+	printf("%d\n", 1 != 2);	//1
+	printf("%d\n", a == b;	//0
+	printf("%d\n", a != b);	//1
+	printf("%d\n", a == 10);	//1
+	printf("%d\n", a == c);	//1
+	printf("%d\n", a = c);	//10
+	printf("%d\n", a = 1);	//1
+	printf("%d\n", a = 0);	//0
+	return 0;
+}
+//6.6
+#include <stdio.h>
+int main(void)
+{
+	int a=5,b=0;
+
+	printf("%d  ",(7==7)&&(8!=3));	// 1
+	printf("%d  ",(7>1) || (8<1));		// 1
+	printf("%d  ",(2==1) && (3==3));	// 0
+	printf("%d  ",!5);			// 0이 아닌 수는 모두 참, 0
+	printf("%d  ",(a&&b));		// 0
+	printf("%d  ",(a||b));			// 1
+	printf("%d\n",(!a));			// 0
+	return 0;
+}
+//6.7
+#include <stdio.h>
+int main(void)
+{
+	int score=92; 
+	printf("%d\n", 92>=90 && 92<95);	//1 && 1
+	printf("%d\n", 90 <= 92 <95);	//1<95
+	printf("%d\n", 97>=90 && 97<95);	//1 && 0
+	printf("%d\n", 90 <= 97 <95);	// 1<95
+	if(score>=90 && score<95) printf("A1\n"); 
+	if(90<=score<95) printf("A2\n"); 
+	score = 97;
+	if(score>=90 && score<95) printf("A1\n"); 
+	if(90<=score<95) printf("A2\n");	//논리적 오류
+//97이 범위 내에 있지 않지만 범위 내에 있는 것처럼 참으로 인식
+	return 0;
+}
+//6.9
+#include <stdio.h>
+int main(void)
+{
+  int a=0x1;
+//2진수 0000 0000 0000 0000 0000 0000 0000 0001,16진수 0000 0001
+  int b=0x3; 
+//2진수 0000 0000 0000 0000 0000 0000 0000 0011, 16진수 0000 0003     
+  printf("%x\n",a&b);   //0000 0000 0000 0000 0000 0000 0000 0001
+  printf("%x\n",a|b);   //0000 0000 0000 0000 0000 0000 0000 0011
+  printf("%x\n",a^b);   //0000 0000 0000 0000 0000 0000 0000 0010
+  printf("%x\n",a^b^b); //0000 0000 0000 0000 0000 0000 0000 0001
+  printf("%x\n",~a);    //1111 1111 1111 1111 1111 1111 1111 1110
+  printf("%x\n",~b);    //1111 1111 1111 1111 1111 1111 1111 1100
+  return 0;
+}
+//6.10
+#include <stdio.h>
+int main(void)
+{
+	printf("%d  ",90<<1);   //180
+	printf("%d  ",90*2);    //180
+	printf("%d  ",90<<2);   //360
+	printf("%d  ",90<<3);   //720 
+	printf("%d\n",90<<4);  //1440 
+
+	printf("%d  ",90>>1);   //45
+	printf("%d  ",90/2);     //45
+	printf("%d  ",90>>2);   //22
+	printf("%d\n",90>>3);  //11
+	return 0;
+}
+//6.11
+#include <stdio.h>
+int main(void)
+{
+	int i=2, j=4,min;
+	printf("%d\n",(i<j) ? i : j);
+ 
+	min = (i<j) ? i : j;  
+	printf("%d\n",min); 
+ 
+	if(i<j) min = i; 
+	else min = j; 
+	printf("%d\n",min); 
+	return 0;
+}
+//6.12
+#include <stdio.h>
+int main(void)
+{
+	int a=10, b=10, c=20, d=20;
+	int ap, bp,cm,dm;
+
+	ap=++a;	// a=a+1; ap=a;   ap=11, a=11 
+	printf("a=%d, ap=%d\n",a,ap);
+
+	bp=b++;	// bp=b;   b=b+1; bp=10, b=11 
+	printf("b=%d, bp=%d\n",b,bp);
+
+	cm=--c;//  c=c-1;   cm=c;  cm=19, c=19 
+	printf("c=%d, cm=%d\n",c,cm);
+
+	dm=d--;// dm=d;   d=d-1; dm=20, d=19 
+	printf("d=%d, dm=%d\n",d,dm);
+	return 0;
+}
+//6.13
+#include <stdio.h>
+int main(void)
+{
+	int x=10,y=4;
+	double z,z1;
+	printf("1:%d\n",10/4); //2
+	printf("2:%f\n",10/4); //0.000000, 컴파일러에 따라 2.500000, 경고
+	printf("3:%f %f %f\n",10/4.0, 10.0/4, 10.0/4.0);//모두 2.500000
+	printf("4:%d\n",x/y); // 2
+	printf("5:%f\n",x/y); // 0.000000, 컴파일러에 따라 2.500000, 경고
+	z=x/y; //double형인 z에 2를 저장하면 소수점만 더 붙음
+	printf("6:%f\n",z); // 2.000000
+	z=(double)x/y; //10.0/4
+	printf("7:%f\n",z); // 2.500000
+	z=x/(double)y; //10/4.0
+	printf("8:%f\n",z); // 2.500000 
+	z=(double)x/(double)y; //10.0/4.0
+	z1=(double)(x/y); //(double)(10/4)
+	printf("9:%f %lf %lf\n",z,z,z1);// 2.500000 2.500000 2.000000  
+	return 0;
+}
+//6.14
+#include <stdio.h>
+int main(void)
+{
+	int x;
+	int y[10];
+
+	printf("%zd  ",sizeof("I love you!"));//12
+	printf("%zd  ",sizeof("대한"));	// 5(cp949) or 7(utf-8) 
+	printf("%zd  ",sizeof(int));	// 4  
+	printf("%zd  ",sizeof(x));	// 4, sizeof x라고 써도 됨 
+	printf("%zd\n",sizeof(y));	// 40, sizeof y라고 써도 됨    
+	return 0;
+}
+//6.15
+#include <stdio.h>
+int main(void)
+{
+	int a=10, b=20;
+	printf("변수 a의 값=%d, 주소=%p\n",a, &a); 
+	printf("변수 b의 값=%d, 주소=%p\n",b, &b); 
+	return 0;
+}
+////////
+#include <stdio.h>
+int main(void)
+{
+  int l=0x12345678;
+  printf("%x\n", (l >> 16) & 0xFFFF); // >>와 &의 의미는?
+  return 0;
+}
+//////////////////////
+#include <stdio.h>
+int main(void)
+{
+  int i=-2, abs;
+  abs=                             
+  printf("%d\n",abs);  // -2의 절댓값인 2 출력
+  return 0;
+}
+
+
+
+
+
+
+

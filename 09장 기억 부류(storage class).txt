@@ -1,0 +1,148 @@
+//9.1
+#include <stdio.h>
+int main(void)
+{
+	int k=10;		//지역 변수
+	printf("%d ",k);	//10
+	{
+		int k=20;	//지역 변수
+		k+=10;
+		printf("%d ",k);//30
+	}
+	k+=5;
+	printf("%d ",k);//15
+	return 0;
+}
+//9.2
+#include <stdio.h>
+int add(int x,int y);
+int main(void)
+{
+	int x=5, y=10,sum;
+	printf("add()함수 호출 전 메인 함수 x=%d, y=%d\n",x,y); 
+	sum=add(x,y);
+	printf("sum=%d\n",sum); 
+	printf("add()함수 호출 후 메인 함수 x=%d, y=%d\n",x,y); 
+	return 0;
+}
+int add(int x,int y) 
+{
+	printf("add()함수 내부 1 x=%d, y=%d\n",x,y);  
+	x=x+5;
+	y=y+5;
+	printf("add()함수 내부 2 x=%d, y=%d\n",x,y); 
+	return(x+y);
+}
+//9.3
+#include <stdio.h>
+void show1(void);
+void show2(void);
+int x;             //전역 변수
+int main(void)
+{
+	printf("main()에서 x는 %d\n",x); 
+	show1();
+	printf("show1()호출 후 x는 %d\n",x);
+	show2();
+	printf("show2()호출 후 x는 %d\n",x);
+	return 0;
+}
+void show1(void)
+{
+	printf("show1()에서 x는 %d\n",++x); 
+}
+void show2(void)
+{
+	int x=10;  //지역 변수
+	printf("show2()에서 x는 %d\n",x); 
+}
+//9.4
+#include <stdio.h>
+int main(void)
+{
+	auto int a=1;//여기서 auto는 생략가능
+	{
+		int a=2;	//auto 변수
+		{
+			int a=3;	//auto 변수
+			printf("%d ",a);
+		}
+		printf("%d ",a);
+	}
+	printf("%d ",a);
+	return 0;
+}
+//9.5
+#include <stdio.h>
+void sub(void);
+int main(void)
+{
+	sub();
+	sub();
+	sub();
+	return 0;
+}
+void sub(void)
+{
+	auto int x=10; //auto 는 생략가능
+	static int y=10; //프로그램 실행 시 처음 한 번만 초기화 
+	printf("x=%d, y=%d\n",x,y); 
+	x++;
+	y++;
+}
+//9.6
+#include <stdio.h>
+int gx=12, gy=24;	// 전역 변수
+int main(void)
+{
+	auto int ax=15,ay=25;// auto변수
+	static int sx=10,sy=20;// static변수 
+
+	printf("ax=%d 주소=%p, ay=%d 주소=%p\n",ax,&ax,ay,&ay); 
+	printf("gx=%d 주소=%p, gy=%d 주소=%p\n",gx,&gx,gy,&gy); 
+	printf("sx=%d 주소=%p, sy=%d 주소=%p\n",sx,&sx,sy,&sy); 
+	return 0;
+}
+////////////////
+#include <stdio.h>
+int j;
+int main(void)
+{
+	int i=10, j=20;
+
+	printf("%d %d\n",i,j);
+	i=20;
+	j=30;
+	printf("%d %d\n",i,j);
+	{
+		int i=50;  
+		printf("%d %d\n",i,j);
+	}
+	printf("%d %d\n",i,j);
+	return 0;
+}
+
+///////////////
+#include <stdio.h>
+int add(int x, int y);
+int main(void)
+{
+	int sum;
+	sum=add(5,10);  
+	printf("sum=%d\n",sum);
+
+	sum=add(10,20);  
+	printf("sum=%d\n",sum);
+
+	sum=add(20,30);  
+	printf("sum=%d\n",sum);
+	return 0;
+}
+int add(int x,int y) 
+{       
+	                  ;
+	printf("add()함수 실행 횟수=%d\n",++count);
+	return(x+y);     
+}
+
+

@@ -1,0 +1,208 @@
+//3.1
+#include <stdio.h>
+int main(void)
+{
+	printf("%c \n",'a');	// %c는 문자로 출력, a
+	printf("%d \n",'a');	// %d는 숫자로 출력, 97
+	printf("%d \n",7);	// 숫자 7, 7
+	printf("%c \n",'7');	// 문자 7, 7
+	printf("%d \n",'7');	// 문자 7을 숫자로, 55
+	return 0;
+}
+//3.2
+#include <stdio.h>
+int main(void)
+{
+	printf("A=%d, a=%d\n",'A','a');
+	return 0;
+}
+//3.3
+#include <stdio.h>
+int main(void)
+{
+	printf("%c, %s\n",'A',"A");
+	return 0;
+}
+
+//3.4
+
+#include <stdio.h>
+int main(void)
+{	
+	num=3;  
+
+	printf("num=%d \n",num);  	
+	return 0;
+}
+//3.5
+#include <stdio.h>
+int main(void)
+{	
+	int x=10;	//선언문		
+	int y;	//선언문
+	y=5;	//실행문
+	printf("%d %d\n",x,y); 
+	return 0;
+}
+//3.6
+#include <stdio.h>
+int main(void)
+{	
+	int x;	// 모든 변수는 사용하기 전에 선언 
+
+	x=10;	// x에는 정수형 숫자만 저장하세요
+	x=12.5;	// 이 부분에서 컴파일러가 경고(warning)를 냄
+	return 0;
+}
+
+//3.7
+
+#include <stdio.h>
+#include <limits.h>	// INT_MAX와 INT_MIN이 정의되어 있음
+int main(void)
+{
+	int x = INT_MAX;	// int형으로 저장할 수 있는 최댓값
+	int y = INT_MIN;	// int형으로 저장할 수 있는 최솟값
+
+	printf("%d  ",x);
+	printf("%d\n",x+1);	//overflow
+	printf("%d  ",y);
+	printf("%d\n",y-1);	//underflow
+	return 0;
+}
+
+#include <stdio.h>
+#include <stdbool.h> // bool 정의됨
+int main(void)
+{
+	_Bool b1, b2;
+	b1 = 0;
+	b2 = 2;  // 0이 아니면 모두 1로 저장됨 
+
+	bool b3, b4;
+	b3 = false;
+	b4 = true;
+	printf("%d %d %d %d", b1,b3,b2,b4 );//0 0 1 1
+	return 0;
+}
+
+//3.8
+#include <stdio.h>
+int main(void)
+{
+	float f_num=15.12345678901234567890f;  
+	double d_num=15.12345678901234567890; 
+
+	printf("%f\n",f_num); 
+	printf("%23.20f\n",f_num); 
+	printf("%23.20f\n",d_num);  
+	return 0;
+} 
+
+//3.9
+#include <stdio.h>
+#include <limits.h>   //정수형
+#include <float.h>    //double, float형
+int main(void)
+{
+	printf("char 크기 : %zdbyte \n",sizeof(char));
+	printf("int 크기 : %zdbytes \n",sizeof(int));
+	printf("int max : %d, int min : %d \n",INT_MAX,INT_MIN );
+	printf("unsigned int max : %u \n",UINT_MAX);   
+	printf("short 크기 : %zdbytes \n",sizeof(short));
+	printf("short max : %d, short min : %d \n",SHRT_MAX,SHRT_MIN );
+	printf("unsigned short max : %u \n",USHRT_MAX); 
+	printf("long  크기 : %zdbytes \n",sizeof(long)); 
+	printf("float 크기 : %zdbytes \n",sizeof(float));  
+	printf("double 크기 : %zdbytes \n",sizeof(double)); 
+	printf("double max : %g, double min : %g \n",DBL_MAX,DBL_MIN );
+	printf("long double 크기 : %zdbytes \n",sizeof(long double)); 
+	return 0;
+}
+//3.10
+#include <stdio.h>
+int main(void)
+{
+	const int num=3;
+	num=num+3;
+	printf("num=%d\n",num);
+	return 0;
+}
+//3.11
+#include <stdio.h>
+int main(void)
+{
+	int i=3;
+	double d=5.0;
+
+	printf("A+1=%d\n",'A'+1);	// 66
+	printf("A+1=%c\n",'A'+1);	// B
+	printf("5.0/3=%f\n",d/i);	// 1.666667
+	printf("3/2=%d\n",i/2);	// 1
+	printf("10/4=%d\n",10/4);	// 2
+	printf("10.0/4=%f\n",10.0/4);	// 2.500000
+	printf("10/4=%f\n",10/4);	// 0.000000
+	return 0;
+}
+//3.12
+#include <stdio.h>
+int main(void)
+{
+	enum  days{sun, mon, tue, wed, thur=7, fri, sat}a1, a2,a6;
+	enum days a8;
+
+	a8=sun;			//0
+	a1=sun;			//0
+	a2=mon;			//1
+	a6=fri;			//8
+	printf("a1=%d, a6=%d, a8=%d\n",a1,a6,a8);
+	return 0;
+}
+//3.13
+#include <stdio.h>	//printf() 함수 원형이 선언되어 있음, 전처리기 
+int main(void)			//콘솔 기반 C프로그램의 시작점 
+{  //main() 함수의 시작
+	int num1, num2;//변수 선언문, 실행문 보다 먼저 씀 
+	/* 변수명: 영문자(A-Z, a-z), 숫자(0-9), 밑줄(_)로 구성 
+	변수(variable):프로그램이 실행되는 동안 자료를 
+	기억시키기 위한 기억장소의 이름 */ 
+
+	num1=100;//대문자와 소문자는 다른 변수로 인식 
+	num2=-300;//변수에 리터럴 대입 
+	printf("두 수의 합은 %d입니다.\n",num1+num2);	//표준 라이브러리 함수 
+	return 0;
+}	//main() 함수의 끝
+///------------------------------------------
+#include <stdio.h>
+int main(void)
+{
+ 	sum=3;  	
+    	printf("%c \n", a);
+	int num;  	
+      	printf("%s \n",'abc');    	
+      	return 0;
+}
+
+////////////////////////////////
+#include <stdio.h>
+#include <limits.h>	//정수형
+#include <float.h>		//double, float형
+int main(void)
+{
+	printf("char 크기 : %zdbyte \n",sizeof(char));
+	printf("int 크기 : %zdbytes \n",sizeof(int));
+	printf("int max : %d, int min : %d \n",INT_MAX,INT_MIN );   
+	printf("unsigned int max : %u \n",UINT_MAX);   
+	printf("short 크기 : %zdbytes \n",sizeof(short));
+	printf("short max : %d, short min : %d \n",SHRT_MAX,SHRT_MIN );   
+	printf("unsigned short max : %u \n",USHRT_MAX); 
+	printf("long  크기 : %zdbytes \n",sizeof(long)); 
+	printf("float 크기 : %zdbytes \n",sizeof(float));  
+	printf("double 크기 : %zdbytes \n",sizeof(double)); 
+	printf("double max : %g, double min : %g \n",DBL_MAX,DBL_MIN );  
+	printf("long double 크기 : %zdbytes \n",sizeof(long double)); 
+	return 0;  
+}
+
+
+

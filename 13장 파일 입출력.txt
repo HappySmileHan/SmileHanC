@@ -1,0 +1,341 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>    //exit(1)
+int main(void)
+{
+	char *name="소프트";
+	FILE *out;
+	
+	out=fopen("out.txt","wt");
+	if(out==NULL) puts("파일을 열 수 없네요. 확인하세요!"), exit(1);
+	fputs(name, out);     //fputs("소프트", out);라고 해도 됨  
+	puts(name);            //puts("소프트");라고 해도 됨
+	fclose(out);
+	return 0;
+}
+//////////////
+//13.1
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>   //exit(1)
+int main(void)
+{
+	char *name="소프트";
+	FILE *out;	
+	out=fopen("out.txt","wt");
+	if(out==NULL) puts("파일을 열 수 없네요. 확인하세요!"), exit(1);
+	puts("puts()로 화면에 출력");
+	fputs(name, out);
+	fputs("안녕하세요", out);
+	fputs("fputs()로 화면에 출력 ",stdout);
+	puts(name);
+	fclose(out);
+	return 0;
+}
+
+//13.2
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>  
+int main(void)
+{
+	char name[256];
+	FILE *in;
+	in=fopen("out.txt","rt");
+	if(in==NULL) puts("파일을 열 수 없네요. 확인하세요!"), exit(1);
+	fgets(name, 256,stdin);  //키보드로 입력받음 
+	puts(name);
+	fgets(name, 256,in); 
+	puts(name);
+	fclose(in);
+	return 0;
+}
+
+//13.3
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+int main(void)
+{
+	int ch;
+	FILE *out;
+	out=fopen("out.txt","wt");
+	if(out==NULL) puts("파일을 열 수 없네요. 확인하세요!"), exit(1);
+	puts("일기장 프로그램입니다.");
+	puts("끝내려면 Ctrl+z를 누르면 됩니다."); 
+	puts("입력한 내용은 out.txt에 저장됩니다."); 
+	while((ch=getchar())!=EOF) fputc(ch,out);
+	fclose(out);
+	return 0;
+}
+
+//13.4
+#include <stdio.h>
+#include <stdlib.h>
+int main(void)
+{
+	int ch;
+	FILE *in;
+	
+	in=fopen("out.txt","rt");
+	if(in==NULL) puts("파일을 열 수 없네요. 확인하세요!"), exit(1);	
+	while((ch=fgetc(in))!=EOF)putchar(ch);
+	fclose(in);
+	return 0;
+}
+
+//13.5
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>     //printf(), scanf(), fprintf(), fopen()
+#include <stdlib.h>    //exit()
+#include <string.h>    //strcmp()
+int main(void)
+{
+  char num[20],name[20];
+  int kor,eng,mat;
+  FILE *out;
+  out=fopen("out1.txt","wt");
+  if(out==NULL) puts("파일을 열 수 없네요. 확인하세요!"), exit(1);
+  while(1) {   //무한 루프
+  	printf("학번(종료:끝):");
+	scanf("%s",num);
+	if(strcmp(num,"끝")==0) break;
+	printf("이름:"); scanf("%s",name);
+	printf("국어:"); scanf("%d",&kor);
+	printf("영어:"); scanf("%d",&eng);
+	printf("수학:"); scanf("%d",&mat);			
+	fprintf(out,"%s %s %d %d %d \n",num,name,kor,eng,mat);
+  }
+  fclose(out);
+  return 0;
+}
+
+//13.6
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>  
+#include <time.h>
+int main(void)
+{
+	int ch;
+	FILE *out;
+	struct tm *now;
+	time_t t;
+	out=fopen("out.txt","at");
+	t = time(NULL);
+	now = localtime(&t);
+
+	if(out==NULL) puts("파일을 열 수 없네요. 확인하세요!"), exit(1);
+	puts("일기장 프로그램입니다.");
+	puts("끝내려면 Ctrl+Z를 누르면 됩니다."); 
+	puts("입력한 내용은 out.txt에 저장됩니다."); 
+
+	fprintf(out,"\n날짜: %d년 %d월 %2d일\n",
+			now->tm_year+1900, now->tm_mon+1, now->tm_mday);
+	fprintf(out,"시간: %d시 %d분 %d초\n",
+			now->tm_hour, now->tm_min, now->tm_sec); 
+
+	while((ch=getchar())!=EOF) fputc(ch,out);
+	fclose(out);
+	return 0;
+}
+
+//13.7
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>  
+int main(void)
+{
+	char num[20],name[20];
+	int kor,eng,mat;
+	FILE *in;
+	in=fopen("out1.txt","rt");
+	if(in==NULL) puts("파일을 열 수 없네요. 확인하세요!"), exit(1);
+	while(1) {
+		if(feof(in)) break;   //EOF를 검출하면 0이 아닌 값 반환
+		fscanf(in,"%s %s %d %d %d\n",num,name,&kor,&eng,&mat);
+		printf("%s %s %d %d %d \n",num,name,kor,eng,mat);
+  }
+	fclose(in);
+	return 0;
+}
+
+//13.8
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#define SIZE 10
+int main(void)
+{
+	char buf[SIZE];
+	FILE *source,*dest;
+	size_t read;	 
+	source=fopen("out.txt","rb");
+	if(source==NULL) puts("source파일을 열 수 없음. 확인!"),exit(1);
+	dest=fopen("out2.txt","wb");
+	if(dest==NULL) puts("dest파일을 열 수 없음. 확인!"),exit(1);
+
+	while(!feof(source)){
+		read=fread(buf,1,SIZE,source);
+		fwrite(buf,1,read,dest);
+	}
+	fclose(source);
+	fclose(dest);
+	puts("복사가 완료되었습니다.");
+	return 0;
+}
+
+//13.9
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+typedef struct _weight{
+	char name[10];
+	double w;
+}weight;
+int main(void)
+{
+	weight man[3]={{"하니",57.5}, 
+			{"엄청군",125.6},
+			{"갈비양",35.7}};
+	weight buf;
+	FILE *out;
+	int i;
+	out=fopen("out.dat","wb");
+	if(out==NULL) puts("Write파일을 열 수 없네요. 확인하세요!"), exit(1);
+	fwrite(man,sizeof(weight),3,out);
+	fclose(out);
+
+	out=fopen("out.dat","rb");
+	if(out==NULL) puts("Read파일을 열 수 없네요. 확인하세요!"), exit(1);	
+	for(i=0;i<3;i++){
+		fread(&buf,sizeof(weight),1,out);
+		printf("%s\t%7.1f\n",buf.name, buf.w);
+  }
+	fclose(out);
+	return 0;
+}
+
+//13.10
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>  
+int main(void)
+{
+	int ch;
+	FILE *in;
+	in=fopen("in.txt","rt");
+	if(in==NULL) puts("파일을 열 수 없네요. 확인하세요!"), exit(1);	
+	fseek(in,0,SEEK_END);
+	printf("파일 크기는 %dbyte\n",ftell(in));
+
+	fseek(in,5,SEEK_SET); //6789
+	while((ch=fgetc(in))!=EOF)putchar(ch);
+	fclose(in);
+	return 0;
+}
+
+/////////////////
+/*HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
+/*H   파일이름 : 성적처리.c                           	             H*/
+/*H   용    도 : 파일로부터 데이터 입력받아 성적처리  	H*/
+/*H   작 성 자 : 컴퓨터소프트웨어과 한소프            	H*/
+/*H   작 성 일 : 2023.3.1                            	              H*/
+/*H   주의사항 : 현재 작업 디렉터리에 입력 파일        	H*/ 
+/*H              sungjuk.txt가 반드시 있어야 합니다. 	              H*/
+/*HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH*/
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>		// printf(),fscanf()
+#include <stdlib.h>		//exit() 
+
+typedef struct SCORE {		//구조체 SCORE형과 같은 score형 선언 
+	char num[10];		//번호  
+	char name[10];		//이름
+	int kor,eng,math,tot;	//국어,영어,수학,총점  
+	double ave;		//평균 
+}score; 
+void swap(score *pn, score *pm);
+
+int main(void) 
+{ 
+	int i=0,n,m,j; 
+	FILE *in;			//입력파일 포인터 선언
+	score people[100];		//구조체 score형 배열 선언
+	score total={"","",0,0,0,0,0.};//구조체 score형 선언과 초기화
+	in=fopen("sungjuk.txt","rt");	//현재 작업 디렉터리에 있는 sungjuk.txt 개방
+	if (in==NULL){		//파일이 제대로 열렸는지 확인 
+		puts("파일을 찾을수 없습니다.");
+		exit(1);		//파일이 제대로 열리지 않으면 프로그램을 끝냄
+	}
+	while(1) {  //무한 루프
+		if(fscanf(in,"%s %s %d %d %d\n",
+			people[i].num,people[i].name,&people[i].kor,
+ 			&people[i].eng,&people[i].math)==EOF)break; 
+		//파일의 끝을 만날 때까지 데이터 받아서 배열에 저장 
+	people[i].tot=people[i].kor+people[i].eng+people[i].math;//각 학생의 총점 계산 
+	people[i].ave=people[i].tot/3.;	//각 학생의 평균 계산
+	total.kor=total.kor+people[i].kor;	//국어 평균 계산
+	total.eng=total.eng+people[i].eng;	//영어 평균 계산
+	total.math=total.math+people[i].math;//수학 평균 계산
+	total.tot=total.tot+people[i].tot;	//총점의 평균 계산 
+	total.ave=total.ave+people[i].ave;	//평균의 평균 계산
+	i++;	//다음사람
+	} 
+	fclose(in);	//다 읽었으면 파일을 닫음
+//---------------선택정렬(selection sort):가장 간단한 정렬 방법 -------------
+	for(n=0;n<i-1;n++){         
+		for(m=n+1;m<i;m++){//자신의 다음 사람부터 비교 
+			if(people[n].tot<people[m].tot)//총점을 비교하여 다음 사람이 더 높으면? 
+			{//위치 교환 
+			  swap(&people[n],&people[m]);  
+			} 
+	   } 
+	} 
+	//-------------------------출력하는 부분---------------------------------
+	printf(" \n");
+	printf("                          성적처리(등수순)              \n");
+	printf(" \n");
+	printf("------------------------------------------------------------------\n");
+	printf("     학번\t   이름      국어     영어    수학    총점    평균\n"); 
+	printf("------------------------------------------------------------------\n");
+	for(j=0;j<i;j++) { 
+		printf("%12s %12s %7d %7d %7d %7d   %7.2f\n", 
+			people[j].num, people[j].name,people[j].kor, 
+			people[j].eng,people[j].math, people[j].tot,people[j].ave); 
+	} 
+	printf("-----------------------------------------------------------------\n");
+	printf("%12s %12s %7d %7d %7d %7d   %7.2f\n", 
+		total.num,total.name,total.kor,total.eng,total.math,total.tot,total.ave);
+	printf("%12s %12s %7.2f %7.2f %7.2f %7.2f   %7.2f\n",total.num,
+		total.name,total.kor/(double)i,total.eng/(double)i,total.math/(double)i,
+		total.tot/(double)i,total.ave/(double)i); 
+	printf("-----------------------------------------------------------------\n");
+	return 0;
+}
+void swap(score *pn, score *pm)//score형 변수 2개를 교환하는 함수
+{
+	score temp;
+	temp=*pn;
+	*pn=*pm;
+	*pm=temp; 
+}
+/////////////
+#include <stdio.h> 
+#include <stdlib.h>  
+#include <string.h>
+int main(void)
+{
+	char name[100];
+	FILE *out;
+	out=fopen("out.txt","wt");
+	if(out==NULL) puts("파일을 열 수 없네요. 확인하세요!"), exit(1);
+	while(1) {
+		puts("친구이름을 입력하세요 (종료:끝)");
+		gets(name); 
+		if(strcmp(name,"끝")==0) break;
+		fputs(name,out);
+		fputs("\n",out);
+	}
+	fclose(out);
+	return 0;
+}

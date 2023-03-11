@@ -1,0 +1,204 @@
+//4.1
+#include <stdio.h>
+int main(void)
+{
+	printf("%d는 16진수로는 %x, 8진수로는 %o입니다.\n",12,12,12);
+	return 0;
+}
+//4.2
+#include <stdio.h>
+int main(void)
+{
+	printf("123456789012345678901234\n");
+	printf("%d%d%d\n",100,-200,300);
+	printf("%d %d %d\n",100,-200,300);
+	printf("%-8d%-8d%-8d\n",100,-200,300);
+	printf("%+8d%8d%8d\n",100,-200,300);
+	printf("%5d,%05d\n",100,100);
+	return 0;
+ }
+//4.3
+#include <stdio.h>
+int main(void)
+{
+	printf("%f\n",100.789);
+	printf("%e\n",100.789);
+	printf("%g\n",100.789);
+	printf("%5.1f\n",100.789);
+	return 0;
+ }
+//4.4
+#include <stdio.h>
+int main(void)
+{
+	printf("\n%c%c%c%c\n",'Y','e','s',',');
+	return 0;
+}
+//4.5
+#include <stdio.h>
+int main(void)
+{
+	printf("%s\n","I am happy.");
+	return 0;
+}
+//4.6
+#include <stdio.h>
+int main(void)
+{
+	int  num;
+
+	printf("숫자 하나를 입력하세요=>");
+	scanf("%d",&num);
+	printf("입력받은 수는 %d입니다.\n",num);
+	return 0;
+ }
+//4.7
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+int main(void)
+{
+	int  n1, n2;
+	printf("숫자 두 개를 스페이스로 구분하여 입력하세요=>");
+	scanf("%d %d",&n1, &n2);
+	printf("입력받은 두 수는 %d, %d이고, 합은 %d입니다.\n",n1, n2, n1+n2);
+	return 0;
+ }
+//4.8
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+int main(void)
+{
+	char  ch1, ch2;
+	printf("문자 두 개를 스페이스로 구분하여 입력하세요=>");
+	scanf("%c%c",&ch1, &ch2);
+	printf("입력받은 문자는 %c와 %c입니다.\n",ch1, ch2);
+	return 0;
+ }
+//4.9
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+int main(void)
+{
+	char ch1,ch2,ch3;
+	printf("1문자를 입력하세요=>"); 
+	scanf("%c",&ch1);  //%c는 한 문자를 키보드 버퍼에서 가져옴  
+
+	printf("2문자를 입력하세요=>"); 
+	scanf("%c",&ch2);  // 엔터나 스페이스도 하나의 문자 
+
+	printf("3문자를 입력하세요=>"); 
+	scanf("%c",&ch3); 
+
+	printf("\n입력한 3개의 문자는 %c %c %c\n",ch1,ch2,ch3);
+	return 0;
+}
+//4.10
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+int main(void)
+{
+	char ch1,ch2,ch3;
+	printf("1문자를 입력하세요=>"); 
+	scanf("%c",&ch1);	//%c는 한 문자를 키보드 버퍼에서 가져옴
+	getchar(); //엔터 입력받음
+
+	printf("2문자를 입력하세요=>"); 
+	scanf("%c",&ch2);	// 엔터나 스페이스도 하나의 문자 
+	getchar(); //엔터 입력받음
+
+	printf("3문자를 입력하세요=>"); 
+	scanf("%c",&ch3);
+	getchar(); //엔터 입력받음
+
+	printf("입력한 3개의 문자는 %c %c %c\n",ch1,ch2,ch3);
+	return 0;
+}
+//4.11
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+int main(void)
+{
+	char  name[10];
+	printf("당신의 이름을 입력하세요:");
+	scanf("%s",name);  
+	printf("당신의 이름은 %s입니다.\n",name);
+	return 0;
+}
+//4.12
+#include <stdio.h>
+int main(void)
+{
+	putchar('\n');//주의 : 큰따옴표가 아닌 작은따옴표로 감쌈
+	putchar('A');
+	putchar('\t');	
+	putchar(65);//숫자 0~127만 가능하며 해당 ASCII 코드가 출력	
+	return 0;
+}
+//4.13
+#include <stdio.h>
+int main(void)
+{
+	char name[10];
+
+	puts("당신의 이름을 입력하세요:");
+	gets_s(name, sizeof(name));//scanf_s("%s", name, sizeof(name));
+
+	puts("당신의 이름은");
+	puts(name);//printf("당신의 이름은 %s입니다.\n",name);
+	return 0;
+}
+//4.14
+#include <stdio.h>	//getchar
+#include <conio.h>	//_getch, _getche
+int main(void)
+{
+	char ch;
+
+	printf("getchar()함수\n");
+	ch=getchar();//getchar() 함수를 실행한 후 그 결과값(반환값)을 ch에 대입
+	putchar(ch);putchar('\n');
+
+	printf("_getch()함수\n");
+	ch=_getch();
+	putchar(ch); putchar('\n');
+
+	printf("_getche()함수\n");
+	ch=_getche();
+	putchar(ch); putchar('\n');
+
+	return 0;
+ }
+/////////////////
+#include <stdio.h>
+int main(void)
+{
+	int  kor,eng,                    
+	double avg;
+
+	printf("총점과 평균을 구하는 프로그램입니다.\n");
+
+	printf("국어 점수를 입력하고 Enter를 누르세요=");
+	scanf("%d",&kor);
+
+	printf                                         
+	scanf                 
+
+	printf("\n수학 점수를 입력하고 Enter를 누르세요=");
+	scanf("%d",&mat);
+
+	total=kor+eng+       ;
+	avg=total/3.0;
+
+	printf("당신의 총점은      이고, 평균은     입니다.\n",total, avg);
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+

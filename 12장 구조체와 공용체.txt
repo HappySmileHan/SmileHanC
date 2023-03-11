@@ -1,0 +1,395 @@
+//12.1
+#include <stdio.h>
+struct Man{		//구조체 선언
+	char name[10];	//멤버
+	int age;		//멤버 
+	double weight;	//멤버
+}; 
+int main(void)
+{ 	
+	struct Man gildong, sunhee,comso[10];
+	gildong.age=20; //일반 구조체 변수의 멤버 참조
+	sunhee.weight=52.5;
+	comso[0].age=25;
+	printf("%d %f %d\n",gildong.age,sunhee.weight,comso[0].age);
+	return 0;
+}
+
+//12.2
+#include <stdio.h>
+struct score{ 
+	char hakbun[10];
+	char name[10];
+	int kor,eng,tot;
+	double avg;
+};
+int main(void)
+{ 
+	struct score h={"20231000","han",80,90};  //구조체 변수의 초기화
+	printf("%s %s %d %d %d %f\n",h.hakbun,h.name,h.kor,h.eng,h.tot,h.avg);
+	h.tot=h.kor+h.eng; 
+  	h.avg=h.tot/2.0;
+	printf("%s %s %d %d %d %f\n",h.hakbun,h.name,h.kor,h.eng,h.tot,h.avg);
+	return 0;
+}
+
+//12.3
+#include <stdio.h>
+typedef struct score{
+	char hakbun[10];
+	char name[10];
+	int kor,eng,tot;
+	double ave;
+}SCORE;
+int main(void)
+{
+	SCORE j,h={"20231000", "han",80,90};
+	h.tot=h.kor+h.eng;
+	j=h;
+	printf("%s %s %d %d %d\n",h.hakbun,h.name,h.kor,h.eng,h.tot);
+	printf("%s %s %d %d %d\n",j.hakbun,j.name,j.kor,j.eng,j.tot);
+	return 0;
+}
+
+//12.4
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <math.h>   //sqrt()
+struct point{ 
+	int x;
+	int y;
+};
+int main(void)
+{ 
+	struct point p1, p2;
+	int xdif, ydif;
+	double distance;
+	printf("첫 번째 점의 x, y 좌표:");
+	scanf("%d %d",&p1.x,&p1.y);
+	printf("두 번째 점의 x, y 좌표:");
+	scanf("%d %d",&p2.x,&p2.y);
+	xdif=p1.x-p2.x;
+	ydif=p1.y-p2.y;
+	distance=sqrt(xdif*xdif+ydif*ydif);//두 점간의 거리 계산
+	printf("두 점 사이의 거리:%f\n",distance);
+	return 0;
+}
+
+//12.5
+#include <stdio.h>
+typedef struct BIRTH{
+	int y,m,d;
+} birth;
+typedef struct PERSON{
+	char name[10];
+	birth day;  // birth라는 구조체형을 멤버로 포함 
+} person;
+
+int main(void)
+{
+	person man={"han",{98,1,19}};
+	printf("%s \n",man.name);
+	printf("%d %d %d\n",man.day.y,man.day.m,man.day.d);
+	return 0;
+}
+
+//12.6
+#include <stdio.h>
+struct weight{
+	char name[10];
+	double w;
+};
+int main(void)
+{
+	struct weight man[3]={{"하니",57.5}, 
+			{"엄청군",125.6},
+			{"갈비양",35.7}};
+	struct weight  temp;
+	int i,j;
+	for(i=0;i<2;i++){ //정렬
+		for(j=i+1;j<3;j++){
+			if(man[i].w<man[j].w){ //몸무게 비교
+				temp=man[i];
+				man[i]=man[j];
+				man[j]=temp;  
+			}
+		}
+	}
+	printf(" 이름 \t체중\n");
+	for(i=0;i<3;i++) printf("%s\t%5.1f\n",man[i].name,man[i].w);
+	return 0;
+}
+
+//12.7
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <string.h>
+struct person{
+	char name[10];
+	int birth;
+};
+int main(void)
+{
+	struct person man,*boy;
+	boy=&man;
+	strcpy(man.name, "han");   //문자열 복사
+	boy->birth=980119;
+	printf("boy->name=%s, man.birth=%d\n",boy->name, man.birth);
+	return 0;
+}
+
+//12.8
+#include <stdio.h>
+#include <math.h>
+typedef struct point{ 
+	int x;
+	int y;
+}Point;
+void showPoint(Point p);              //함수 선언
+Point addPoint(Point p1, Point p2);   //함수 선언
+int main(void){ 
+	Point p1={1,2};
+	Point p2={3,4};
+	Point p3;
+	showPoint(p1);        //call by value, 구조체 변수가 매개변수 
+	showPoint(p2);        //call by value
+	p3=addPoint(p1,p2);   //매개변수와 반환값이 구조체 변수
+	showPoint(p3);
+	return 0;
+}
+void showPoint(Point p){
+	printf("x=%d, y=%d\n",p.x,p.y);
+}
+Point addPoint(Point p1, Point p2){
+	Point temp;
+	temp.x=p1.x+p2.x;
+	temp.y=p1.y+p2.y;
+	return temp;
+}
+
+//12.9
+#include <stdio.h>
+typedef struct weight{  //자주 사용하므로 typedef로 새로운 형을 만든다.
+	char name[10];
+	double w;
+}WEIGHT;
+void swap(WEIGHT *mani, WEIGHT *manj); //함수선언
+int main(void)
+{
+	WEIGHT man[3]={{"하니",57.5}, 
+			{"엄청군",125.6},
+			{"갈비양",35.7}};
+	int i,j;
+	for(i=0;i<2;i++){ //sort
+		for(j=i+1;j<3;j++){
+			if(man[i].w>man[j].w){ 
+				swap(&man[i],&man[j]);  //call by address  
+			}
+		}
+	}
+	printf(" 이름 \t체중\n");
+	for(i=0;i<3;i++) printf("%s\t%5.1f\n",man[i].name,man[i].w);
+	return 0;
+}
+void swap(WEIGHT *mani, WEIGHT *manj)
+{  //mani=&man[i], *manj=&man[j]
+	WEIGHT temp;
+	temp=*mani;
+	*mani=*manj;
+	*manj=temp; 
+}
+
+//12.10
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <time.h>
+int main(void) 
+{
+	struct tm *now;
+	time_t t;     //long int형
+	t=time(NULL);//1970년 1월 1일 자정부터 경과한 시간을 초 단위로 반환
+	now = localtime(&t);
+
+	printf("날짜: %d년 %d월 %2d일\n",
+			now->tm_year+1900, now->tm_mon+1, now->tm_mday);
+	printf("시간: %d시 %d분 %d초\n",
+			now->tm_hour, now->tm_min, now->tm_sec);    
+	return 0;
+} 
+
+//12.11
+#include <stdio.h>
+typedef struct SCORE {
+	int kor,eng;
+} score;
+int hap(score *phan);
+int main(void)
+{
+	score han={80,90};
+	int sum;
+	sum=hap(&han);		//call by address 
+	printf("sum=%d\n",sum);
+	return 0;
+}
+int hap(score *phan)
+{ // 4바이트 전달됨
+	return(phan->kor+phan->eng);  
+}
+
+//12.12
+#include <stdio.h>
+struct st{
+	char sc;
+	int si;
+	double sd;	
+};
+union un{
+	char uc;
+	int ui;
+	double ud;
+};
+int main(void)
+{
+	struct st s;
+	union un u;
+
+	printf("구조체 크기:%zd, 공용체 크기:%zd\n",sizeof(s),sizeof(u));
+	printf("sc=%p si=%p sd=%p\n",&s.sc,&s.si,&s.sd);
+	printf("uc=%p ui=%p ud=%p\n",&u.uc,&u.ui,&u.ud);
+	return 0;
+}
+
+//12.13
+#include <stdio.h>
+union Un{
+	int in;       //4바이트
+	char ch[4]; //4바이트
+};
+int main(void)
+{
+	union Un uu;
+
+	uu.ch[0]='1';
+	uu.ch[1]='2';
+	uu.ch[2]='3';
+	uu.ch[3]='\0';
+
+	printf("%c %c %c %c\n",uu.ch[0],uu.ch[1],uu.ch[2],uu.ch[3]);
+	printf("%s %d\n",uu.ch,uu.in);
+
+	uu.in=123;      //int형
+	printf("%d %s\n",uu.in,uu.ch);
+	return 0;
+}
+///////////
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>			//exit()
+
+typedef struct st{			//구조체 ST 선언 
+	char bun[10];		//번호  
+	char name[10];		//이름
+	int kor,eng,math,tot;	//국어,영어,수학,총점  
+	double ave;		//평균 
+}ST; 
+
+int main(void)
+{ 
+	int i=0,n,m,count; 
+
+	ST people[100],temp;	 //구조체 ST형 변수 선언
+	ST total={"","",0,0,0,0,0.}; //구조체 변수 초기화     
+
+	printf("-----------------------------------\n");
+	printf("       성적 처리  프로그램입니다.      \n");
+	printf("-----------------------------------\n");
+
+	printf("성적 처리할 학생들이 몇 명입니까:");
+	scanf("%d",&count);
+
+	for(i=0;i<count;i++){
+		printf("%d번째 학생의 학번을 입력하고 Enter를 누르세요:",i+1);	
+		scanf("%s",people[i].bun);
+		printf("%d번째 학생의 이름을 입력하고 Enter를 누르세요:",i+1);	
+		scanf("%s",people[i].name);
+		printf("국어 점수를 입력하고 Enter를 누르세요:");
+		scanf("%d", &people[i].kor);
+		printf("영어 점수를 입력하고 Enter를 누르세요:");
+		scanf("%d",&people[i].eng);
+		printf("수학 점수를 입력하고 Enter를 누르세요:");
+		scanf("%d",&people[i].math);
+		people[i].tot=people[i].kor+people[i].eng+people[i].math;
+		//각 학생의 총점 계산 
+		people[i].ave=people[i].tot/3.;		//각 학생의 평균 계산
+		total.kor=total.kor+people[i].kor;        	//국어 평균 계산
+		total.eng=total.eng+people[i].eng;        //영어 평균 계산
+		total.math=total.math+people[i].math;   //수학 평균 계산
+		total.tot=total.tot+people[i].tot;            //총점의 평균 계산 
+		total.ave=total.ave+people[i].ave;          //평균의 평균 계산
+	} 
+//---------------정렬(sort):가장 간단한 정렬 방법 -------------//
+	for(n=0;n<count-1;n++){ 
+		for(m=n+1;m<count;m++){	//자신의 다음 사람부터 비교 
+			if(people[n].tot<people[m].tot){ //각 사람의 총점을 비교  		
+				temp=people[n];
+				people[n]=people[m];
+				people[m]=temp;
+			} 
+		} 
+	} 
+//--------------------------출력하는 부분-------------------------------------//
+	printf(" \n");
+	printf("                          성적처리(등수순)              \n");
+	printf(" \n");
+	printf("------------------------------------------------------------\n");
+	printf("     학번\t   이름      국어     영어    수학    총점    평균\n"); 
+	printf("------------------------------------------------------------\n");
+	for(i=0;i<count;i++) 
+	{ 
+		printf("%12s %12s %7d %7d %7d %7d   %7.2f\n", 
+		people[i].bun, people[i].name,people[i].kor, 
+		people[i].eng,people[i].math, people[i].tot,people[i].ave); 
+	} 
+	printf("------------------------------------------------------------\n");
+	printf("%12s %12s %7d %7d %7d %7d   %7.2f\n", 
+		total.bun, total.name,total.kor,total.eng,total.math,total.tot,total.ave); 
+	printf("%12s %12s %7.2f %7.2f %7.2f %7.2f   %7.2f\n", 
+		total.bun,total.name,total.kor/(double)count,
+		total.eng/(double)count,total.math/(double)count,
+		total.tot/(double)count,total.ave/(double)count); 
+	
+	printf("------------------------------------------------------------\n");
+	return 0;
+} 
+/////////////
+#include <stdio.h> 
+int encode(int i);			//함수 선언
+int main(void) 
+{
+	int number;
+	printf("암호화하고 싶은 정수를 입력하세요:");
+	scanf("%d",&number);
+	number = encode(number);            //암호화
+	printf("암호화 값=%d\n",number);
+	number = encode(number);            //복호화
+	printf("복호화 값=%d\n",number);
+	return 0;
+}
+// 정수를 암호화하고, 암호화된 정수를 복호화
+int encode(int i) 
+{
+	union CRYPT{
+		int num;
+		char c[2];
+	} crypt;
+ 
+	unsigned char temp;
+	crypt.num = i;
+
+	temp = crypt.c[0];
+	crypt.c[0] = crypt.c[1];
+	crypt.c[1] = temp;
+
+	return crypt.num; 
+}
+
