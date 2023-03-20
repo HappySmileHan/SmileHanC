@@ -15,7 +15,7 @@ int main()
 	int i,j;    	// 변수, 3장, 기억 부류, 9장
 	for(i=0;i<2;i++){ 	// 제어문, 7장
 		for(j=i+1;j<3;j++){	// 연산자, 6장
-			if(man[i].w<man[j].w)
+			if(man[i].w<man[j].w) {
 				swap(&man[i],&man[j]);// call by address, 11장
 			}
 		}
