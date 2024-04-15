@@ -31,7 +31,7 @@ int main(void)
 	printf("%d\n", a);
 	a = a + 5; printf("%d\n", a);	// 10	
 	a += 5; printf("%d\n", a);	// 15, a = a + 5 
-	a -= 5; printf("%d\n", a);	// 10, a = a - 5
+	a -= 5; printf("%d\n", a);	// 10, a = a - 5
 	a *= 5; printf("%d\n", a);	// 50, a = a * 5
 	a /= 2; printf("%d\n", a);	// 25, a = a / 2
 	a *= a + 5; printf("%d\n", a);//a = a*(a+5) = 25*30   
@@ -58,7 +58,7 @@ int main(void)
 	int a = 10, b = 20, c = 10;
 	printf("%d\n", 1 == 2);	//0
 	printf("%d\n", 1 != 2);	//1
-	printf("%d\n", a == b;	//0
+	printf("%d\n", a == b);	//0
 	printf("%d\n", a != b);	//1
 	printf("%d\n", a == 10);	//1
 	printf("%d\n", a == c);	//1
